@@ -9,15 +9,9 @@ class BoardTest {
     @org.junit.jupiter.api.Test
     void Board() {
         int[] b1 = {1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0};
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Board(b1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Board(b1));
         int[] b2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,0};
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Board(b2);
-        });
-        int[] b3 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
-        Board board3 = new Board(b3);
+        assertThrows(IllegalArgumentException.class, () -> new Board(b2));
     }
 
     @org.junit.jupiter.api.Test
@@ -78,9 +72,7 @@ class BoardTest {
     @org.junit.jupiter.api.Test
     void isSolvable() {
         int[] b1 = {1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0};
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Board(b1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Board(b1));
         int[] b2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15};
         Board board2 = new Board(b2);
         assertTrue(board2.isSolvable());
@@ -90,7 +82,6 @@ class BoardTest {
     void equals() {
         int[] b1 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15};
         Board board1 = new Board(b1);
-        int[] b2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15};
         Board board2 = new Board(b1);
 
         assertEquals(board1, board2);
@@ -100,7 +91,7 @@ class BoardTest {
     @org.junit.jupiter.api.Test
     void solve() {
         Board board1 = new Board();
-        int[] b2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0};
+        board1.shuffle();
         Board board2 = new Board();
         Solver solver = board1.getSolver();
         ArrayList<Board> solution = solver.solve();
