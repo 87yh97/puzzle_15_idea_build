@@ -31,12 +31,24 @@ public class Board {
     }
 
     public Board(int[] board) {
-        this.board = board.clone();
+        if (board.length != 16) {
+            throw new IllegalArgumentException("Board's length is not 16");
+        }
+        boolean[] wasPlaced = new boolean[16];
+
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
+                if (wasPlaced[board[i * 4 + j]]) throw new IllegalArgumentException("Board contains repeating elements");
+                else wasPlaced[board[i * 4 + j]] = true;
                 Coordinates[board[i * 4 + j]] = new TileCoordinates(j + 1, i + 1);
             }
         }
+
+
+
+        this.board = board.clone();
+
+        if(!isSolvable()) throw new IllegalArgumentException("Entered board is not solvable!");
     }
 
     public int[] getBoard() {
@@ -196,9 +208,22 @@ public class Board {
             }
             board.append(System.getProperty("line.separator"));
             //board.append(Character.charCount(13));
-            for (int j = 0; j < 9; j++) board.append(" ═");
+            board.append(" ═".repeat(9));
             board.append(System.getProperty("line.separator"));
         }
         return board.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Board board1 = (Board) o;
+        return Arrays.equals(board, board1.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(board);
     }
 }

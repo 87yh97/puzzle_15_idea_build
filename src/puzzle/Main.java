@@ -24,10 +24,12 @@ public class Main {
                         testNum = Integer.parseInt(inp[1]);
                     } catch (IndexOutOfBoundsException | NumberFormatException e) {
                         System.out.println("Wrong input");
+                        System.out.print("Type the command: ");
                         continue;
                     }
                     if (testNum < 1) {
                         System.out.println("Wrong input");
+                        System.out.print("Type the command: ");
                         continue;
                     }
                     for (int p = 0; p < testNum; p++) {
