@@ -1,0 +1,4 @@
+module puzzle {
+
+    opens puzzle;
+}
