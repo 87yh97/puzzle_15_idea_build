@@ -41,6 +41,7 @@ public class Main {
                         ArrayList<Board> solution = solver.solve();
                         long stop = System.currentTimeMillis();
                         long time = (stop - start);
+                        System.out.println("BOARD NUMBER " + (p + 1));
                         System.out.println("NUMBER OF STEPS: " + solution.size());
                         System.out.println("TIME: " + time / 1000 / 60 + ":" + time / 1000 % 60);
                         System.out.println("=========================================================");
